@@ -16,6 +16,25 @@ function playSound() {
     }
 }
 
+function moveButton() {
+    const noBtn = document.getElementById('noBtn');
+    const title = document.querySelector('.title');
+    const yesBtn = document.getElementById('yesBtn');
+    
+    // Move No button
+    noBtn.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)`;
+    
+    // Shake Title and Yes button
+    title.classList.add('shake');
+    yesBtn.classList.add('shake');
+    
+    // Remove shake after animation
+    setTimeout(() => {
+        title.classList.remove('shake');
+        yesBtn.classList.remove('shake');
+    }, 400);
+}
+
 function handleYes() {
     playSound();
     if (confettiInterval) clearInterval(confettiInterval);
@@ -46,7 +65,7 @@ function triggerConfetti() {
 function handleNo() {
     playSound();
     const noBtn = document.getElementById('noBtn');
-    document.body.classList.add('shake', 'red-blink');
+    document.body.classList.add('red-blink');
     noBtn.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)`;
     
     document.getElementById('main-container').classList.add('hidden');
@@ -59,18 +78,4 @@ function handleNo() {
 
 function handleReturn() {
     window.location.reload();
-}
-
-function moveButton() {
-    const noBtn = document.getElementById('noBtn');
-    const body = document.body;
-    
-    noBtn.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)`;
-    body.classList.add('shake', 'red-blink');
-    
-    if (window.shakeTimeout) clearTimeout(window.shakeTimeout);
-    
-    window.shakeTimeout = setTimeout(() => {
-        body.classList.remove('shake', 'red-blink');
-    }, 500);
 }
