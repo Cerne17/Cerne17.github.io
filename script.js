@@ -1,22 +1,26 @@
+document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('yesBtn').addEventListener('click', handleYes);
+    document.getElementById('noBtn').addEventListener('click', handleNo);
+    document.getElementById('noBtn').addEventListener('mouseover', moveButton);
+});
+
 let confettiInterval;
 
 function playSound() {
     const clickSound = document.getElementById('clickSound');
-    clickSound.currentTime = 0;
-    clickSound.play();
+    try {
+        clickSound.currentTime = 0;
+        clickSound.play();
+    } catch (e) {
+        console.log('Sound playback error:', e);
+    }
 }
 
 function handleYes() {
-    // Clear existing interval if any
+    playSound();
     if (confettiInterval) clearInterval(confettiInterval);
-    
-    // Initial confetti
     triggerConfetti();
-    
-    // Repeat confetti every 2.5 seconds
     confettiInterval = setInterval(triggerConfetti, 2500);
-    
-    // Show success screen
     document.getElementById('main-container').classList.add('hidden');
     document.getElementById('success-container').classList.remove('hidden');
 }
@@ -41,18 +45,13 @@ function triggerConfetti() {
 
 function handleNo() {
     playSound();
-    
-    // Trigger effects
+    const noBtn = document.getElementById('noBtn');
     document.body.classList.add('shake', 'red-blink');
-    const noBtn = document.querySelector('.no-btn');
     noBtn.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)`;
-
-    // Show error screen
+    
     document.getElementById('main-container').classList.add('hidden');
-    const errorContainer = document.getElementById('error-container');
-    errorContainer.classList.remove('hidden');
+    document.getElementById('error-container').classList.remove('hidden');
 
-    // Set timeout for auto-return
     setTimeout(() => {
         handleReturn();
     }, 3000);
@@ -63,10 +62,15 @@ function handleReturn() {
 }
 
 function moveButton() {
-    const noBtn = document.querySelector('.no-btn');
+    const noBtn = document.getElementById('noBtn');
+    const body = document.body;
+    
     noBtn.style.transform = `translate(${Math.random() * 200 - 100}px, ${Math.random() * 200 - 100}px)`;
-    document.body.classList.add('shake', 'red-blink');
-    setTimeout(() => {
-        document.body.classList.remove('shake', 'red-blink');
+    body.classList.add('shake', 'red-blink');
+    
+    if (window.shakeTimeout) clearTimeout(window.shakeTimeout);
+    
+    window.shakeTimeout = setTimeout(() => {
+        body.classList.remove('shake', 'red-blink');
     }, 500);
 }
