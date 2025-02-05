@@ -5,22 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valentine's Question ❤️</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 </head>
 <body>
+    <audio id="clickSound" src="./assets/click.mp3"></audio>
+    
     <div class="container" id="main-container">
         <h1 class="title">Will you be my valentine?</h1>
         <div class="buttons">
-            <button class="btn yes-btn" onclick="handleYes()">Yes</button>
-            <button class="btn no-btn" onmouseover="moveButton()" onclick="handleNo()">No</button>
+            <button class="btn yes-btn" onclick="playSound(); handleYes()">Yes</button>
+            <button class="btn no-btn" onmouseover="moveButton()" onclick="playSound(); handleNo()">No</button>
         </div>
     </div>
 
     <div class="success-container hidden" id="success-container">
-        <a href="YOUR_GOOGLE_DRIVE_LINK_HERE" target="_blank" class="success-text">Click Me! ❤️</a>
+        <a href="YOUR_GOOGLE_DRIVE_LINK_HERE" target="_blank" class="success-text">I Love You, My Forever Valentine! ❤️</a>
+        <div class="yes-text">
+            <p>Vida, muito obrigado por ter entrado na minha vida!</p>
+            <p>Infelizmente eu não estou aí do seu ladinho pra poder fazer algo mais romântico ou criativo, então decidi usar um pouco da minha nerdice pra tentar deixar meu pedido de Valentine's Day um pouquinho mais próximo do que você merece!</p>
+            <p>Eu sou muito feliz de poder ter uma pessoa tão incrível como você em minha vida, meu anjo. Eu te amo mais que tudo nesse mundo e poder passar mais um Valentine's Day sendo seu namorado é uma dádiva, uma verdadeira bênção! Eu quero poder passar o resto da minha vida ao seu lado, meu amor!</p>
+            <p>Mas essa maluquice de pedido não é só isso não! Clica no título nem um pouco chamativo ali em cima e aproveita hehe</p>
+        </div>
     </div>
 
     <div class="error-container hidden" id="error-container">
         <h1 class="error-text">Wrong answer... try again.</h1>
+        <button class="btn return-btn" onclick="handleReturn()">Return</button>
     </div>
 
     <script src="script.js"></script>
