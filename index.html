@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine's Question ❤️</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" id="main-container">
+        <h1 class="title">Will you be my valentine?</h1>
+        <div class="buttons">
+            <button class="btn yes-btn" onclick="handleYes()">Yes</button>
+            <button class="btn no-btn" onmouseover="moveButton()" onclick="handleNo()">No</button>
+        </div>
+    </div>
+
+    <div class="success-container hidden" id="success-container">
+        <a href="YOUR_GOOGLE_DRIVE_LINK_HERE" target="_blank" class="success-text">Click Me! ❤️</a>
+    </div>
+
+    <div class="error-container hidden" id="error-container">
+        <h1 class="error-text">Wrong answer... try again.</h1>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
